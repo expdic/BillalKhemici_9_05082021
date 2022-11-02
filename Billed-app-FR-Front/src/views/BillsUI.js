@@ -20,17 +20,18 @@ const row = (bill) => {
 }
   
 const antiChrono = (a, b) => {
-  if(a.theDate){
-    return a.theDate < b.theDate ? 1 : -1
-  }
-  return a.date < b.date ? 1 : -1
+  return new Date(a.date) <  new Date(b.date) ? 1 : -1
 }
 
+
 const rows = (data) => {
+  console.log(data)
   return (data && data.length) ? data.sort(antiChrono).map(bill => row(bill)).join("") : ""
 }
 
+
 export default ({ data: bills, loading, error }) => {
+
   
   const modal = () => (`
     <div class="modal fade" id="modaleFile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
