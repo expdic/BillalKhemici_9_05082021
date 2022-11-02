@@ -17,10 +17,17 @@ const row = (bill) => {
       </td>
     </tr>
     `)
+}
+  
+const antiChrono = (a, b) => {
+  if(a.theDate){
+    return a.theDate < b.theDate ? 1 : -1
   }
+  return a.date < b.date ? 1 : -1
+}
 
 const rows = (data) => {
-  return (data && data.length) ? data.map(bill => row(bill)).join("") : ""
+  return (data && data.length) ? data.sort(antiChrono).map(bill => row(bill)).join("") : ""
 }
 
 export default ({ data: bills, loading, error }) => {
