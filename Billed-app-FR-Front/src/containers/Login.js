@@ -58,8 +58,7 @@ export default class Login {
       })
   }
 
-  
-// "MODIF" J'ajoute "istanbul ignore next" pour que ça ne soit pas testé comme demandé 
+
 /* istanbul ignore next */ 
   login = (user) => {
     if (this.store) {

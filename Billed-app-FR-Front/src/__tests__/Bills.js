@@ -19,7 +19,7 @@ jest.mock("../app/store", () => mockStore);
 
 describe("Given I am connected as an employee", () => {
   describe("When I am on Bills Page", () => {
-    // On vérifie que l'on se trouve bien sur la page contenant les factures en s'assurant que l'icône associée est en surbrillance
+    
     test("Then bill icon in vertical layout should be highlighted", async () => {
       Object.defineProperty(window, "localStorage", {
         value: localStorageMock,
@@ -37,12 +37,12 @@ describe("Given I am connected as an employee", () => {
       window.onNavigate(ROUTES_PATH.Bills);
       await waitFor(() => screen.getByTestId("icon-window"));
       const windowIcon = screen.getByTestId("icon-window");
-      expect(windowIcon.className).toEqual("active-icon");
+      expect(windowIcon.className).toEqual("active-icon"); 
 
     });
-    // On vérifie le tri de date 
+ 
     test("Then bills should be ordered from earliest to latest", () => {
-      document.body.innerHTML = BillsUI({ data: bills.sort((a, b) => (a.date < b.date) ? 1 : -1) });
+      document.body.innerHTML = BillsUI({ data: bills.sort((a, b) => (new Date(b.date) - new Date(a.date))) });
       const dates = screen.getAllByText(/^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/i).map(a => a.innerHTML)
       const antiChrono = (a, b) => (a < b ? 1 : -1);
       const datesSorted = [...dates].sort(antiChrono);
@@ -60,7 +60,7 @@ describe("Given I am connected as an employee", () => {
       }))
       const billsInit = new Bills({
         document, onNavigate, store: null, localStorage: window.localStorage
-      })
+      }) 
       document.body.innerHTML = BillsUI({ data: bills })
       const handleClickIconEye = jest.fn((icon) => billsInit.handleClickIconEye(icon));
       const iconEye = screen.getAllByTestId("icon-eye");
@@ -71,13 +71,13 @@ describe("Given I am connected as an employee", () => {
         userEvent.click(icon)
         expect(handleClickIconEye).toHaveBeenCalled()
       })
-      expect(modaleFile.getAttribute("class")).toContain("show");
+      expect(modaleFile.getAttribute("class")).toContain("show"); 
       });
     });
   });
 });
 
-// on vérifie l'integration GET
+
 describe("Given I am a user connected as Employee", () => {
   describe("When I navigate to the Bills page", () => {
     test("fetches bills from mock API GET", async () => {
@@ -86,12 +86,12 @@ describe("Given I am a user connected as Employee", () => {
         JSON.stringify({ type: "employee", email: "employee@test.tld" })
       );
       const root = document.createElement("div");
-      root.setAttribute("id", "root");
-      document.body.append(root);
+      root.setAttribute("id", "root");  
+      document.body.append(root); 
       router();
       window.onNavigate(ROUTES_PATH.Bills);
       await waitFor(() => screen.getByTestId("tbody"));
-      expect(screen.getByTestId("tbody").innerHTML).toBeTruthy();
+      expect(screen.getByTestId("tbody").innerHTML).toBeTruthy(); 
     });
     describe("When an error occurs on API", () => {
       beforeEach(() => {

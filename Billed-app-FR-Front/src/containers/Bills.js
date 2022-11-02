@@ -34,8 +34,8 @@ export default class {
       .list()
       .then(snapshot => {
         const bills = snapshot
-          // "MODIF" Je trie les dates par ordre.
-          .sort((a, b) => (a.date < b.date) ? 1 : -1)
+          // "MODIF" Je trie les dat es par ordre.
+          .sort((a, b) => (a.date < b.date) ? 1 : -1) 
           .map(doc => {
             try {
               return {

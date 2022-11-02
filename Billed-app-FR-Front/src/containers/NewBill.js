@@ -23,7 +23,7 @@ export default class NewBill {
     const fileFormat = fileName.substring(fileName.lastIndexOf("."))
     const champFile = e.target;
 
-    // "MODIF" si le format est bon, on valide
+    //  si le format est bon, on valide
     if(fileFormat === ".jpg" || fileFormat === ".jpeg" || fileFormat === ".png") {
     champFile.setCustomValidity("")
     const formData = new FormData()
@@ -44,7 +44,7 @@ export default class NewBill {
         this.fileUrl = fileUrl
         this.fileName = fileName
       }).catch(error => console.error(error))
-    // "MODIF" sinon, on demande le bon format  
+    //  sinon, on demande le bon format  
     } else {
       champFile.setCustomValidity("Le format doit être JPG, JPEG ou PNG")
     }
