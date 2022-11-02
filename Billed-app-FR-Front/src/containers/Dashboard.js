@@ -146,8 +146,9 @@ export default class {
     }
 
     bills.forEach(bill => {
-      // "MODIF" je supprime l'evenement attaché puis je le rattache
+      // "MODIF" je supprime l'evenement attaché puis je le rattache en ajoutant on et off
       $(`#open-bill${bill.id}`).off().on().click((e) => this.handleEditTicket(e, bill, bills))
+      console.log("haha")
     })
 
     return bills

@@ -15,7 +15,6 @@ jest.mock("../app/store", () => mockStore)
 
 describe("Given I am connected as an employee", () => {
   describe("When I submit a new Bill", () => {
-    // on vérifie que le bill se sauvegarde
     test("Then must save the bill", async () => {
       const onNavigate = (pathname) => {
         document.body.innerHTML = ROUTES({ pathname })
@@ -34,12 +33,12 @@ describe("Given I am connected as an employee", () => {
       })
   
       const formNewBill = screen.getByTestId("form-new-bill")
-      expect(formNewBill).toBeTruthy()
+      expect(formNewBill).toBeTruthy() 
       
       const handleSubmit = jest.fn((e) => newBillInit.handleSubmit(e));
       formNewBill.addEventListener("submit", handleSubmit);
       fireEvent.submit(formNewBill);
-      expect(handleSubmit).toHaveBeenCalled();
+      expect(handleSubmit).toHaveBeenCalled(); 
     });
 
     test("Then show the new bill page", async () => {
@@ -51,7 +50,6 @@ describe("Given I am connected as an employee", () => {
       window.onNavigate(ROUTES_PATH.NewBill)
     })
 
-    // on vérifie si un fichier est bien chargé
     test("Then verify the file bill", async() => {
       jest.spyOn(mockStore, "bills")
 
@@ -86,7 +84,7 @@ describe("Given I am connected as an employee", () => {
       const handleSubmit = jest.fn((e) => newBillInit.handleSubmit(e));
       formNewBill.addEventListener("submit", handleSubmit);     
       fireEvent.submit(formNewBill);
-      expect(handleSubmit).toHaveBeenCalled();
+      expect(handleSubmit).toHaveBeenCalled(); 
     })
   })
 })
